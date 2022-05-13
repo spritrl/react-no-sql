@@ -59,22 +59,65 @@ function App() {
               display: 'flex',
               flexDirection: 'column',
               padding: 20,
-              backgroundColor: 'blue',
-              color: 'white',
+              backgroundColor: '#243E36',
+              color: '#E0EEC6',
               fontWeight: 'bold',
+              flexWrap: 'wrap',
               width: '20%',
               height: 'auto',
               margin: 10,
               borderRadius: 10,
             }}>
-            <a>Ville : {item.ville}</a>
-            <a>Adresse : {item.adresse}</a>
-            <a>CP : {item.$.cp}</a>
+            <div style={{
+              marginBottom: 10,
+              marginTop: 10,
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+              <a style={{ color: '#C2A83E' }}>Informations:</a>
+              <a>Ville : {item.ville}</a>
+              <a>Adresse : {item.adresse}</a>
+              <a>CP : {item.$.cp}</a>
+            </div>
+            { /* item.services && (
+              <a>
+                CP : {
+                  JSON.stringify(item.services[0])
+                }
+              </a>)*/}
+            <div style={{
+              marginBottom: 10,
+              marginTop: 10,
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+              <a style={{ color: '#C2A83E' }}>Carburants:</a>
+              {item.prix && Object.keys(item.prix).map((key) => {
+                return (<a
+                  key={item.prix[key].$.nom}>
+                  {item.prix[key].$.nom} : {parseInt(item.prix[key].$.valeur) / 1000}€
+                </a>)
+              })}
+            </div>
+            <div style={{
+              marginBottom: 10,
+              marginTop: 10,
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+              <a style={{ color: '#C2A83E' }}>Liste des services:</a>
+              {item.services[0].service && Object.keys(item.services[0].service).map((key) => {
+                return (<a
+                  key={item.services[0].service[key]}>
+                  {item.services[0].service[key]}
+                </a>)
+              })}
+            </div>
           </div>
         )
         }
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
 
