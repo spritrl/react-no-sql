@@ -29,6 +29,31 @@ function App() {
         setListCarburant(carburantListUrls);
       })
   }
+
+  const searchCarburant = async (search) => {
+    let carburantListUrls = [];
+    if (search !== "") {
+      await axios.get(`http://localhost:3000/search?search=${search}`, function (req, res) {
+        res.header("Access-Control-Allow-Origin", "*");
+      })
+        .then(res => {
+          const data = res.data;
+          return data;
+        })
+        .then(result => {
+          result.forEach((element, i) => {
+            carburantListUrls.push(element);
+          });
+        })
+        .then(res => {
+          setListCarburant(carburantListUrls);
+        })
+    } else {
+      getCarburant();
+    }
+   
+  }
+
   const ville = 'viille';
   const adresse = 'adresse';
   const adresseee = 'adresseee';
@@ -54,7 +79,7 @@ function App() {
         marginLeft: 'auto',
         marginRight: 'auto',
       }}>
-        <input type="search" placeholder="Exemple : Nice" name="search" id="search" onChange={event => setQ(event.target.value)}/>
+        <input type="search" placeholder="Exemple : Nice" name="search" id="search" onChange={event => searchCarburant(event.target.value)}/>
         {listCarburant.length > 0 && listCarburant.filter((val)=> {
           if(q == ""){
             return val;
