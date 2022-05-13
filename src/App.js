@@ -5,6 +5,8 @@ import axios from 'axios';
 function App() {
   const [listCarburant, setListCarburant] = useState([]);
 
+  const [q, setQ] = useState("");
+
   useEffect(() => {
     getCarburant();
   }, []);
@@ -34,8 +36,15 @@ function App() {
         display: 'flex',
         flexDirection: 'column',
       }}>
-        {listCarburant.length > 0 && listCarburant.map(item =>
-          <a key={Math.floor(Math.random() * 999999999999999999999999999999999999999999999999999999999999)}>{item.ville}</a>
+        <input type="search" placeholder="Exemple : Nice" name="search" id="search" onChange={event => setQ(event.target.value)}/>
+        {listCarburant.length > 0 && listCarburant.filter((val)=> {
+          if(q == ""){
+            return val;
+          }else if(val.ville[0].toLowerCase().startsWith(q.toLowerCase())) {
+            return val;
+          }
+        }).map(item =>
+          <a key={Math.floor(Math.random() * 9999999999999999999)}>{item.ville}</a>
         )}
       </div>
     </div>
