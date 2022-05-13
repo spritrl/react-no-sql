@@ -30,9 +30,14 @@ function App() {
 
   return (
     <div className="App">
-      {listCarburant.length > 0 && listCarburant.map(item =>
-        <a key={Math.floor(Math.random() * 999999999999999999999999999999999999999999999999999999999999)}>{item.ville}</a>
-      )}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        {listCarburant.length > 0 && listCarburant.map(item =>
+          <a key={Math.floor(Math.random() * 999999999999999999999999999999999999999999999999999999999999)}>{item.ville}</a>
+        )}
+      </div>
     </div>
   );
 }
