@@ -27,18 +27,54 @@ function App() {
         setListCarburant(carburantListUrls);
       })
   }
-
+  const ville = 'viille';
+  const adresse = 'adresse';
+  const adresseee = 'adresseee';
   return (
-    <div className="App">
+    <div className="App" style={{
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    }}>
       <div style={{
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        width: '100%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
       }}>
         {listCarburant.length > 0 && listCarburant.map(item =>
-          <a key={Math.floor(Math.random() * 999999999999999999999999999999999999999999999999999999999999)}>{item.ville}</a>
-        )}
-      </div>
-    </div>
+          <div
+            key={item.id}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: 20,
+              backgroundColor: 'blue',
+              color: 'white',
+              fontWeight: 'bold',
+              width: '20%',
+              height: 'auto',
+              margin: 10,
+              borderRadius: 10,
+            }}>
+            <a>Ville : {item.ville}</a>
+            <a>Adresse : {item.adresse}</a>
+            <a>CP : {item.$.cp}</a>
+          </div>
+        )
+        }
+      </div >
+    </div >
   );
 }
 
